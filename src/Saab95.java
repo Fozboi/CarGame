@@ -1,10 +1,13 @@
 package src;
 
 import java.awt.*;
-
+/**
+ * klassen Saab95 är en subklass til Car och innehåller värden och metoder för en
+ * specifik biltyp.
+ */
 public class Saab95 extends Car{
 
-    public boolean turboOn;
+    private boolean turboOn;
     
     public Saab95(){
         setNrDoors(2);
