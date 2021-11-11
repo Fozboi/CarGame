@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Tests all methods in the class Saab95. 100% method coverage
+ */
 public class Saab95Test {
 
     Saab95 testSaab;
@@ -14,6 +17,9 @@ public class Saab95Test {
         testSaab = new Saab95();
     }
 
+    /**
+     * accelerates the testcar with and without turbo and compares the values to assure function
+     */
     @Test
     public void turboIncreasesAcceleration(){
         double beforeSpeed = 10;
@@ -31,5 +37,18 @@ public class Saab95Test {
 
 
         assertTrue(offSpeed < onSpeed);
+    }
+
+    /**
+     * makes sure brake() actually slows down the car
+     */
+    @Test
+    public void brakeDecreasesSpeed(){
+        testSaab.setCurrentSpeed(20);
+        double preSpeed = testSaab.getCurrentSpeed();
+        testSaab.brake(0.5);
+        double postSpeed = testSaab.getCurrentSpeed();
+
+        assertTrue(postSpeed < preSpeed);
     }
 }

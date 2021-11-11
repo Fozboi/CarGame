@@ -1,7 +1,7 @@
 package src;
 
 /**
- * Interface som håller metoder för rörelse
+ * Interface that declares movement methods
  */
 public interface Movable {
     void move();

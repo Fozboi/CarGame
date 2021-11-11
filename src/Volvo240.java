@@ -16,7 +16,10 @@ public class Volvo240 extends Car{
         setModelName("Volvo240");
         stopEngine();
     }
-
+    /**
+     * a method that calculates a factor for the calculation of a veichle's acceleration
+     * @return
+     */
     @Override
     double speedFactor(){
         return getEnginePower() * 0.01 * trimFactor;

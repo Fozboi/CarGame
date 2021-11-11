@@ -2,8 +2,7 @@ package src;
 
 import java.awt.*;
 /**
- * klassen Saab95 är en subklass til Car och innehåller värden och metoder för en
- * specifik biltyp.
+ * The class Saab95 is a subclass of Car and contains values and methods for a specific type of car
  */
 public class Saab95 extends Car{
 
@@ -18,14 +17,24 @@ public class Saab95 extends Car{
         stopEngine();
     }
 
+    /**
+     * turns on the turbo
+     */
     public void setTurboOn(){
 	    turboOn = true;
     }
 
+    /**
+     * turns off the turbo
+     */
     public void setTurboOff(){
 	    turboOn = false;
     }
-    
+
+    /**
+     * a method that calculates a factor for the calculation of a viechle's acceleration
+     * @return
+     */
     public double speedFactor(){
         double turbo = 1;
         if(turboOn) turbo = 1.3;

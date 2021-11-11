@@ -9,10 +9,6 @@ import java.awt.*;
 public abstract class Car implements Movable {
 
     private int dir;
-    public static final int NORTH = 0;
-    public static final int EAST = 1;
-    public static final int SOUTH = 2;
-    public static final int WEST = 3;
 
     private Point position = new Point(0,0);
     private double xcoord;
@@ -25,8 +21,7 @@ public abstract class Car implements Movable {
     private String modelName; // The car model name
 
     /**
-     * metoden move() tar en bils riktning och baserat på denna flyttar
-     * bilen i lämplig riktning.
+     * the move() method moves a car with its current speed in the direction it is facing
      */
     public void move(){
         switch (dir) {
@@ -93,20 +88,36 @@ public abstract class Car implements Movable {
 
     abstract double speedFactor();
 
-    public void incrementSpeed(double amount){
+    /**
+     * calculates the incremental speed increase when gas() is called
+     * @param amount
+     */
+    private void incrementSpeed(double amount){
         currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,enginePower);
     }
 
-    public void decrementSpeed(double amount){
+    /**
+     * calculates the incremental speed decrease when brake() is called
+     * @param amount
+     */
+    private void decrementSpeed(double amount){
         currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
     }
 
+    /**
+     * accepts values between 0 and 1 and increases the car's speed by calling incrementSpeed()
+     * @param amount
+     */
     public void gas(double amount){
         if(0 <= amount && amount <= 1) {
             incrementSpeed(amount);
         }else throw new IllegalArgumentException("bara värden mellan 0 och 1 tillåtna");
     }
 
+    /**
+     * accepts values between 0 and 1 and decreases the car's speed by calling decrementSpeed()
+     * @param amount
+     */
     public void brake(double amount){
         if(0 <= amount && amount <= 1) {
             decrementSpeed(amount);
