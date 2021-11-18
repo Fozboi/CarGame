@@ -43,13 +43,14 @@ public class Saab95 extends Car{
 	    turboOn = false;
     }
 
- 
+
     /**
      * The speed factor returns the acceleration of the Saab95 Car calculated by inserting the turbo, which if it
      * is off returns a factor of 1, and if it is on returns a factor of 1.3.
      * inserting the engine power from above, multiplied by a constant factor, multiplied with the turbo factor
      * from above.
      */
+    @Override
     public double speedFactor(){
         double turbo = 1;
         if(turboOn) turbo = 1.3;
