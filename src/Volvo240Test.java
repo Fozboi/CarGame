@@ -21,7 +21,7 @@ public class Volvo240Test {
      */
     @Test
     public void brakeDecreasesSpeed(){
-        testVolvo.setCurrentSpeed(20);
+        testVolvo.gas(1);
         double preSpeed = testVolvo.getCurrentSpeed();
         testVolvo.brake(0.5);
         double postSpeed = testVolvo.getCurrentSpeed();

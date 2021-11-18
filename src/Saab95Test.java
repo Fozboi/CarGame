@@ -22,17 +22,17 @@ public class Saab95Test {
      */
     @Test
     public void turboIncreasesAcceleration(){
-        double beforeSpeed = 10;
-        double gasFactor = 0.5;
 
-        testSaab.setCurrentSpeed(beforeSpeed);
+        testSaab.gas(1);
         testSaab.setTurboOff();
-        testSaab.gas(gasFactor);
+        testSaab.gas(0.5);
         double offSpeed = testSaab.getCurrentSpeed();
+        testSaab.stopEngine();
 
-        testSaab.setCurrentSpeed(beforeSpeed);
+        testSaab.startEngine();
+        testSaab.gas(1);
         testSaab.setTurboOn();
-        testSaab.gas(gasFactor);
+        testSaab.gas(0.5);
         double onSpeed = testSaab.getCurrentSpeed();
 
 
@@ -44,7 +44,7 @@ public class Saab95Test {
      */
     @Test
     public void brakeDecreasesSpeed(){
-        testSaab.setCurrentSpeed(20);
+        testSaab.gas(1);
         double preSpeed = testSaab.getCurrentSpeed();
         testSaab.brake(0.5);
         double postSpeed = testSaab.getCurrentSpeed();
