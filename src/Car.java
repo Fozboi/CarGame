@@ -3,16 +3,24 @@ package src;
 import java.awt.*;
 
 /**
- * Superklass Car, håller reda på en bils riktning, position och hastighet
- * Innehåller samtliga bilars funktioner men vissa override:as av subklasser
+ * Superclass Car, keeps track of a car's direction, position and speed
+ * Contains the functions of all cars, but some are overridden in sublcasses
  */
 public abstract class Car implements Movable {
 
+    /**
+     * 
+     */
     private int dir;
 
-    private Point position = new Point(0,0);
-    private double xcoord;
-    private double ycoord;
+    private int xcoord = 0;
+    private int ycoord = 0;
+    private Point position = new Point(xcoord,ycoord);
+
+    private static final int NORTH = 0;
+    private static final int EAST = 1;
+    private static final int SOUTH = 2;
+    private static final int WEST = 3;
 
     private int nrDoors; // Number of doors on the car
     private double enginePower; // Engine power of the car
@@ -25,21 +33,20 @@ public abstract class Car implements Movable {
      */
     public void move(){
         switch (dir) {
-            case 0:
+            case NORTH:
                 ycoord+= -currentSpeed;
                 break;
-            case 1:
+            case EAST:
                 xcoord+= currentSpeed;
                 break;
-            case 2:
+            case SOUTH:
                 ycoord+= currentSpeed;
                 break;
-            case 3:
+            case WEST:
                 xcoord+= -currentSpeed;
                 break;
         }
-
-        position = new Point((int) xcoord,(int) ycoord);
+        position.setLocation(xcoord,ycoord);
     }
 
     public void turnLeft(){
@@ -64,10 +71,7 @@ public abstract class Car implements Movable {
     }
     public void setEnginePower(double pwr){enginePower = pwr;}
 
-    public double getCurrentSpeed(){
-        return currentSpeed;
-    }
-    public void setCurrentSpeed(double speed){currentSpeed = speed;}
+    public double getCurrentSpeed(){ return currentSpeed; }
 
     public Color getColor(){
         return color;

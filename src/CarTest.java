@@ -30,7 +30,7 @@ public class CarTest {
     public void moveMovesCar(){
         int yIntPos = (int) position.getY();
         int yPosBefore = yIntPos;
-        testCar.setCurrentSpeed(1);
+        testCar.gas(1);
         testCar.move();
         int yPosAfter = yIntPos;
 
@@ -54,9 +54,9 @@ public class CarTest {
      */
     @Test
     public void breakDecreasesSpeed(){
-        testCar.setCurrentSpeed(10);
+        testCar.gas(1);
         double beforeSpeed = testCar.getCurrentSpeed();
-        testCar.brake(0.8);
+        testCar.brake(0.5);
         double afterSpeed = testCar.getCurrentSpeed();
 
         assertTrue(afterSpeed < beforeSpeed);
@@ -67,9 +67,9 @@ public class CarTest {
      */
     @Test
     public void gasIncreasesSpeed(){
-        testCar.setCurrentSpeed(10);
+        testCar.gas(1);
         double beforeSpeed = testCar.getCurrentSpeed();
-        testCar.gas(0.8);
+        testCar.gas(0.5);
         double afterSpeed = testCar.getCurrentSpeed();
 
         assertTrue(afterSpeed > beforeSpeed);
