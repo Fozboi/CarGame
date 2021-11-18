@@ -30,11 +30,11 @@ public abstract class Car implements Movable {
     /**
      * Declaring variables determining car specifications
      */
-    private int nrDoors; // Number of doors on the car
-    private double enginePower; // Engine power of the car
-    private double currentSpeed; // The current speed of the car
-    private Color color; // Color of the car
-    private String modelName; // The car model name
+    int nrDoors; // Number of doors on the car
+    double enginePower; // Engine power of the car
+    double currentSpeed; // The current speed of the car
+    Color color; // Color of the car
+    String modelName; // The car model name
 
     /**
      * the move() method moves a car with its current speed in the direction it is facing, then updates the
@@ -89,24 +89,12 @@ public abstract class Car implements Movable {
     }
 
     /**
-     * sets the car's number of doors
-     * @param nr
-     */
-    public void setNrDoors(int nr){nrDoors = nr;}
-
-    /**
      * returns the car's engine power
      * @return
      */
     public double getEnginePower(){
         return enginePower;
     }
-
-    /**
-     * sets the car's engine power
-     * @param pwr
-     */
-    public void setEnginePower(double pwr){enginePower = pwr;}
 
     /**
      * returns the car's current speed
@@ -123,25 +111,16 @@ public abstract class Car implements Movable {
     }
 
     /**
-     * sets the car's color
-     * @param clr
-     */
-    public void setColor(Color clr){
-        color = clr;
-    }
-
-    /**
      * returns the car's model name
      * @return
      */
     public String getModelName(){ return modelName; }
 
     /**
-     * sets the car's model name
-     * @param name
+     * returns the car's current position
+     * @return
      */
-    public void setModelName(String name){modelName = name;}
-
+    public Point getPosition(){return position;}
     /**
      * starts the car's engine, setting it to roll slowly forward
      */

@@ -8,8 +8,6 @@ import java.awt.*;
 
 /**
  * CarTest tests methods in Car to make sure they're all working
- * as of now, 19/20 methods are covered and we can't find which isn't. We believe this is
- * fine since all more advanced methods are tested.
  */
 
 public class CarTest {
@@ -24,17 +22,43 @@ public class CarTest {
     }
 
     /**
-     * makes sure move() method actually moves the car.
+     * makes sure move() method actually moves the car, first north, then the other directions
+     * in order
      */
     @Test
-    public void moveMovesCar(){
-        int yIntPos = (int) position.getY();
-        int yPosBefore = yIntPos;
-        testCar.gas(1);
+    public void moveMovesCarInRightDir(){
+        //north
+        testCar.currentSpeed=10;
+        double yPosBefore = testCar.getPosition().getY();
         testCar.move();
-        int yPosAfter = yIntPos;
+        double yPosAfter = testCar.getPosition().getY();
 
-        assertNotSame(yPosBefore, yPosAfter);
+        assertTrue(yPosBefore > yPosAfter);
+
+        //east
+        testCar.turnRight();
+        double xPosBefore = testCar.getPosition().getX();
+        testCar.move();
+        double xPosAfter = testCar.getPosition().getX();
+
+        assertTrue(xPosBefore < xPosAfter);
+
+        //south
+        testCar.turnRight();
+        yPosBefore = testCar.getPosition().getY();
+        testCar.move();
+        yPosAfter = testCar.getPosition().getY();
+
+        assertTrue(yPosBefore < yPosAfter);
+
+        //west
+        testCar.turnRight();
+        xPosBefore = testCar.getPosition().getX();
+        testCar.move();
+        xPosAfter = testCar.getPosition().getX();
+
+        assertTrue(xPosBefore > xPosAfter);
+
     }
 
     @Test
@@ -108,24 +132,26 @@ public class CarTest {
     }
 
     @Test
-    public void setGetColor(){
-        testCar.getColor();
-        testCar.setColor(Color.WHITE);
+    public void getColor(){
+        testCar.color = Color.WHITE;
         assertTrue(testCar.getColor()==Color.WHITE);
     }
 
     @Test
-    public void setGetEnginePwr(){
-        testCar.getEnginePower();
-        testCar.setEnginePower(100);
+    public void getEnginePwr(){
+        testCar.enginePower = 100;
         assertTrue(testCar.getEnginePower()==100);
     }
 
     @Test
-    public void setGetNrDoors(){
-        testCar.getNrDoors();
-        testCar.setNrDoors(3);
+    public void getNrDoors(){
+        testCar.nrDoors = 3;
         assertTrue(testCar.getNrDoors()==3);
     }
 
+    @Test
+    public void getModelName(){
+        testCar.modelName = "Saab95";
+        assertTrue(testCar.getModelName() == "Saab95");
+    }
 }
