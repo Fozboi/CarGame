@@ -81,6 +81,14 @@ public abstract class Car implements Movable {
     }
 
     /**
+     * sets the car's direction to a determined value
+     * @param dir
+     */
+    public void setDir(int dir){
+        this.dir = dir;
+    }
+
+    /**
      * returns the car's number of doors
      * @return
      */
@@ -121,6 +129,15 @@ public abstract class Car implements Movable {
      * @return
      */
     public Point getPosition(){return position;}
+
+    /**
+     * sets the car's position to a determined point
+     * @param position
+     */
+    public void setPosition(Point position){
+        this.position = position;
+    }
+
     /**
      * starts the car's engine, setting it to roll slowly forward
      */
