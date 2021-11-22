@@ -20,10 +20,7 @@ public class Volvo240 extends Car{
      * initializes the method stop engine which assures that the car does not move it is created
      */
     public Volvo240(){
-        super.nrDoors = 4;
-        super.color = Color.BLACK;
-        super.enginePower = 100;
-        super.modelName = "Volvo240";
+        super(4,Color.BLACK,100,"Volvo240");
         stopEngine();
     }
 

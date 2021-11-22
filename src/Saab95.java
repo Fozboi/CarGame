@@ -21,11 +21,8 @@ public class Saab95 extends Car{
      * initializes the method stop engine which assures that the car does not move it is created
      */
     public Saab95(){
-        super.nrDoors = 2;
-        super.color = Color.RED;
-        super.enginePower = 125;
+        super(2, Color.RED, 125, "Saab95");
 	    setTurboOff();
-        super.modelName = "Saab95";
         stopEngine();
     }
 

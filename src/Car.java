@@ -22,20 +22,26 @@ public abstract class Car implements Movable {
     /**
      * final variables for the different directions in order to improve clarity
      */
-    private static final int NORTH = 0;
-    private static final int EAST = 1;
-    private static final int SOUTH = 2;
-    private static final int WEST = 3;
+    public static final int NORTH = 0;
+    public static final int EAST = 1;
+    public static final int SOUTH = 2;
+    public static final int WEST = 3;
 
     /**
      * Declaring variables determining car specifications
      */
-    int nrDoors; // Number of doors on the car
-    double enginePower; // Engine power of the car
+     private int nrDoors; // Number of doors on the car
+    private double enginePower; // Engine power of the car
     double currentSpeed; // The current speed of the car
-    Color color; // Color of the car
-    String modelName; // The car model name
+    private Color color; // Color of the car
+    private String modelName; // The car model name
 
+    public Car(int nrDoors, Color color, double enginePower, String modelName){
+        this.nrDoors = nrDoors;
+        this.color = color;
+        this.enginePower = enginePower;
+        this.modelName = modelName;
+    }
     /**
      * the move() method moves a car with its current speed in the direction it is facing, then updates the
      * position of the car.

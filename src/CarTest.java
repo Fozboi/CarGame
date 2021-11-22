@@ -64,13 +64,13 @@ public class CarTest {
     @Test
     public void turnLeftWorks(){
         testCar.turnLeft();
-        assertTrue(testCar.getDir()==3);
+        assertTrue(testCar.getDir()==Car.WEST);
     }
 
     @Test
     public void turnRightWorks(){
         testCar.turnRight();
-        assertTrue(testCar.getDir()==1);
+        assertTrue(testCar.getDir()==Car.EAST);
     }
 
     /**
@@ -128,30 +128,39 @@ public class CarTest {
     @Test
     public void stopEngineWorks(){
         testCar.stopEngine();
-        assertTrue(testCar.getCurrentSpeed()==0);
+        assertTrue(testCar.getCurrentSpeed() == 0);
     }
 
     @Test
     public void getColor(){
-        testCar.color = Color.WHITE;
-        assertTrue(testCar.getColor()==Color.WHITE);
+        assertTrue(testCar.getColor().equals(Color.RED));
     }
 
     @Test
     public void getEnginePwr(){
-        testCar.enginePower = 100;
-        assertTrue(testCar.getEnginePower()==100);
+        assertTrue(testCar.getEnginePower() == 125);
     }
 
     @Test
     public void getNrDoors(){
-        testCar.nrDoors = 3;
-        assertTrue(testCar.getNrDoors()==3);
+        assertTrue(testCar.getNrDoors() == 2);
     }
 
     @Test
     public void getModelName(){
-        testCar.modelName = "Saab95";
-        assertTrue(testCar.getModelName() == "Saab95");
+        assertTrue(testCar.getModelName().equals("Saab95"));
+    }
+
+    @Test
+    public void setDir(){
+        testCar.setDir(Car.SOUTH);
+        assertTrue(testCar.getDir() == Car.SOUTH);
+    }
+
+    @Test
+    public void setPosition(){
+        Point testpos = new Point(20,20);
+        testCar.setPosition(testpos);
+        assertTrue(testCar.getPosition().equals(testpos));
     }
 }

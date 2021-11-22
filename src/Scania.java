@@ -7,10 +7,7 @@ public class Scania extends Truck{
     private final double maxTrailerAngle = 70;
 
     public Scania(){
-        super.nrDoors = 2;
-        super.color = Color.BLUE;
-        super.enginePower = 90;
-        super.modelName = "Scania";
+        super(2,Color.BLUE,90,"Scania");
         stopEngine();
     }
 

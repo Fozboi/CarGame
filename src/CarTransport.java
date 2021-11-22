@@ -115,28 +115,24 @@ public class CarTransport implements CanLoad<Car>, Movable, HasTrailer{
     public void turnRight() {
         hasATruck.turnLeft();
     }
-    double speedFactor() {
-        return hasATruck.speedFactor();
-    }
-    @Override
+    double speedFactor() { return hasATruck.speedFactor(); }
+
     public Point getPosition(){return hasATruck.getPosition();}
-    @Override
+
     public void setPosition(Point newPos){ hasATruck.setPosition(newPos);}
-    @Override
-    public double getEnginePower() {return hasATruck.getEnginePower();}
-    @Override
+
     public void gas(double amount){hasATruck.gas(amount);}
-    @Override
+
     public void brake(double amount){hasATruck.brake(amount);}
-    @Override
+
     public void startEngine(){hasATruck.startEngine();}
-    @Override
+
     public void stopEngine(){hasATruck.stopEngine();}
-    @Override
+
     public double getCurrentSpeed() {return hasATruck.getCurrentSpeed(); }
-    @Override
+
     public int getDir() {return hasATruck.getDir();}
-    @Override
+
     public void setDir(int newDir) {hasATruck.setDir(newDir);}
     public Truck getTruck(){ return hasATruck; }
     public double getPickupRange(){return pickupRange;}
@@ -146,8 +142,8 @@ public class CarTransport implements CanLoad<Car>, Movable, HasTrailer{
     public double getTrailerAngle() {throw new IllegalArgumentException("Transporters do now have an angle of their ramp");}
     @Override
     public boolean trailerIsUp() {return hasATruck.trailerIsUp();}
-    @Override
-    public boolean trailersIsDown() {return hasATruck.trailersIsDown();}
+
+    public boolean trailerIsDown() {return hasATruck.trailerIsDown();}
     @Override
     public void setTrailerDown() {setRampDown();}
     @Override
