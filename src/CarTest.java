@@ -39,6 +39,7 @@ public class CarTest {
     @Test
     public void moveMovesCarEast() {
         //east
+        testCar.gas(1);
         testCar.turnRight();
         double xPosBefore = testCar.getPosition().getX();
         testCar.move();
@@ -50,6 +51,8 @@ public class CarTest {
     @Test
     public void moveMovesCarSouth() {
         //south
+        testCar.gas(1);
+        testCar.turnRight();
         testCar.turnRight();
         double yPosBefore = testCar.getPosition().getY();
         testCar.move();
@@ -61,6 +64,7 @@ public class CarTest {
     @Test
     public void moveMovesCarWest() {
         //west
+        testCar.gas(1);
         testCar.turnLeft();
         double xPosBefore = testCar.getPosition().getX();
         testCar.move();
