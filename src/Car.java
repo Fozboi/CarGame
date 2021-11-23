@@ -6,7 +6,7 @@ import java.awt.*;
  * Superclass Car, keeps track of a car's direction, position and speed
  * Contains the functions of all cars, but some are overridden in sublcasses
  */
-public abstract class Car implements Movable {
+public abstract class Car implements Movable, HasEngine {
 
     /**
      * Int dir stores a value corresponding to the direction of the car

@@ -3,7 +3,7 @@ package src;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class CarTransport implements CanLoad<Car>, Movable, HasTrailer{
+public class CarTransport implements CanLoad<Car>, Movable, HasTrailer, HasEngine{
     Truck hasATruck;
     int loadCapacity;
     double pickupRange;
@@ -128,6 +128,9 @@ public class CarTransport implements CanLoad<Car>, Movable, HasTrailer{
     public void startEngine(){hasATruck.startEngine();}
 
     public void stopEngine(){hasATruck.stopEngine();}
+
+    @Override
+    public double getEnginePower() { return hasATruck.getEnginePower(); }
 
     public double getCurrentSpeed() {return hasATruck.getCurrentSpeed(); }
 
