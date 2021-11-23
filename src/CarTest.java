@@ -26,15 +26,18 @@ public class CarTest {
      * in order
      */
     @Test
-    public void moveMovesCarInRightDir(){
+    public void moveMovesCarNorth() {
         //north
-        testCar.currentSpeed=10;
+        testCar.gas(1);
         double yPosBefore = testCar.getPosition().getY();
         testCar.move();
         double yPosAfter = testCar.getPosition().getY();
 
         assertTrue(yPosBefore > yPosAfter);
+    }
 
+    @Test
+    public void moveMovesCarEast() {
         //east
         testCar.turnRight();
         double xPosBefore = testCar.getPosition().getX();
@@ -42,23 +45,28 @@ public class CarTest {
         double xPosAfter = testCar.getPosition().getX();
 
         assertTrue(xPosBefore < xPosAfter);
+    }
 
+    @Test
+    public void moveMovesCarSouth() {
         //south
         testCar.turnRight();
-        yPosBefore = testCar.getPosition().getY();
+        double yPosBefore = testCar.getPosition().getY();
         testCar.move();
-        yPosAfter = testCar.getPosition().getY();
+        double yPosAfter = testCar.getPosition().getY();
 
         assertTrue(yPosBefore < yPosAfter);
+    }
 
+    @Test
+    public void moveMovesCarWest() {
         //west
-        testCar.turnRight();
-        xPosBefore = testCar.getPosition().getX();
+        testCar.turnLeft();
+        double xPosBefore = testCar.getPosition().getX();
         testCar.move();
-        xPosAfter = testCar.getPosition().getX();
+        double xPosAfter = testCar.getPosition().getX();
 
         assertTrue(xPosBefore > xPosAfter);
-
     }
 
     @Test
