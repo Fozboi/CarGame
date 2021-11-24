@@ -131,44 +131,68 @@ public class CarTest {
         } catch (IllegalArgumentException expectedException){ }
     }
 
+    /**
+     * makes sure startEngine actually starts the engine
+     */
     @Test
     public void startEngineWorks(){
         testCar.startEngine();
         assertTrue(testCar.getCurrentSpeed()==0.1);
     }
 
+    /**
+     * makes sure stopEngine actually stops the engine
+     */
     @Test
     public void stopEngineWorks(){
         testCar.stopEngine();
         assertTrue(testCar.getCurrentSpeed() == 0);
     }
 
+    /**
+     * makes sure getColor returns the valid color of the car
+     */
     @Test
     public void getColor(){
         assertTrue(testCar.getColor().equals(Color.RED));
     }
 
+    /**
+     * makes sure getEnginePower returns a valid power of the car
+     */
     @Test
     public void getEnginePwr(){
         assertTrue(testCar.getEnginePower() == 125);
     }
 
+    /**
+     * makes sure getNrDoors returns a valid number of doors of the car
+     */
     @Test
     public void getNrDoors(){
         assertTrue(testCar.getNrDoors() == 2);
     }
 
+    /**
+     * makes sure getModelName returns a valid name of the car
+     */
     @Test
     public void getModelName(){
         assertTrue(testCar.getModelName().equals("Saab95"));
     }
 
+    /**
+     * makes sure setDir turns the car in the appropriate direction
+     */
     @Test
     public void setDir(){
         testCar.setDir(Car.SOUTH);
         assertTrue(testCar.getDir() == Car.SOUTH);
     }
 
+    /**
+     * makes sure setPosition sets the car in the position it is said to
+     */
     @Test
     public void setPosition(){
         Point testpos = new Point(20,20);

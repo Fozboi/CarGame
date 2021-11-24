@@ -1,5 +1,13 @@
 package src;
 
+/**
+ * Creates the interface (requirements) for having an engine:
+ * method for starting the engine
+ * method for stopping the engine
+ * method for returning the engine power
+ * method for defining the positive acceleration
+ * method for defining the negative acceleration
+ */
 public interface HasEngine {
     void startEngine();
     void stopEngine();
