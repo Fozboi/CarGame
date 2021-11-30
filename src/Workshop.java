@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * workshop for cars, implements interface CanLoad
  * @param <T> type variable, describes the type of car the workshop accepts
  */
-public class Workshop<T extends Car> implements CanLoad<T> {
+public class Workshop<T extends Car> implements ICanLoad<T> {
     int loadCapacity;
     private ArrayList<T> loadedCars;
 
@@ -40,6 +40,12 @@ public class Workshop<T extends Car> implements CanLoad<T> {
      * Unloads a vehicle out of the workshop if it is possible
      */
     public void unloadObject(T obj){
-        loadedCars.remove(obj);
+        if(loadedCars.contains(obj)) {
+            loadedCars.remove(obj);
+        }
+    }
+
+    public ArrayList<T> getLoadedObjects(){
+        return loadedCars;
     }
 }

@@ -8,7 +8,7 @@ package src;
  * method for defining the positive acceleration
  * method for defining the negative acceleration
  */
-public interface HasEngine {
+public interface IHasEngine {
     void startEngine();
     void stopEngine();
     double getEnginePower();

@@ -6,9 +6,8 @@ import java.util.ArrayList;
 
 /**
  * CarTransport for cars, implements interface CanLoad, Movable, HasTrailer and HasEngine
- * @param <T> type variable, describes the type of car the CarTransport can transport
  */
-public class CarTransport implements CanLoad<Car>, Movable, HasTrailer, HasEngine{
+public class CarTransport implements ICanLoad<Car>, IMovable, IHasTrailer, IHasEngine {
     Truck hasATruck;
     int loadCapacity;
     double pickupRange;
@@ -98,8 +97,15 @@ public class CarTransport implements CanLoad<Car>, Movable, HasTrailer, HasEngin
     public void loadObject(Car car){
         if(canLoadObject(car)){
             loadedCars.add(car);
+
+            int xPos = (int) hasATruck.getPosition().getX();
+            int yPos = (int) hasATruck.getPosition().getY();
+            Point newPos = new Point(xPos, yPos);
+            car.setPosition(newPos);
+            car.isLoaded = true;
         }
     }
+
 
     /**
      * unloads the car off the truck if the number of cars are above zero
@@ -114,22 +120,15 @@ public class CarTransport implements CanLoad<Car>, Movable, HasTrailer, HasEngin
             int xPos = (int) hasATruck.getPosition().getX();
             int yPos = (int) hasATruck.getPosition().getY();
 
-            switch (hasATruck.getDir()){
-                case NORTH:
-                    yPos += pickupRange;
-                    break;
-                case EAST:
-                    xPos += -pickupRange;
-                    break;
-                case SOUTH:
-                    yPos += -pickupRange;
-                    break;
-                case WEST:
-                    xPos += pickupRange;
-                    break;
+            switch (hasATruck.getDir()) {
+                case NORTH -> yPos += pickupRange;
+                case EAST -> xPos += -pickupRange;
+                case SOUTH -> yPos += -pickupRange;
+                case WEST -> xPos += pickupRange;
             }
             Point newPos = new Point(xPos,yPos);
             car.setPosition((newPos));
+            car.isLoaded = false;
         }
     }
 

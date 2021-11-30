@@ -6,7 +6,7 @@ import java.awt.*;
  * Superclass Car, keeps track of a car's direction, position and speed
  * Contains the functions of all cars, but some are overridden in sublcasses
  */
-public abstract class Car implements Movable, HasEngine {
+public abstract class Car implements IMovable, IHasEngine {
 
     /**
      * Int dir stores a value corresponding to the direction of the car
@@ -18,6 +18,7 @@ public abstract class Car implements Movable, HasEngine {
     private int xcoord = 0;
     private int ycoord = 0;
     private Point position = new Point(xcoord,ycoord);
+    public boolean isLoaded = false;
 
     /**
      * final variables for the different directions in order to improve clarity
@@ -47,21 +48,15 @@ public abstract class Car implements Movable, HasEngine {
      * position of the car.
      */
     public void move(){
-        switch (dir) {
-            case NORTH:
-                ycoord+= -currentSpeed;
-                break;
-            case EAST:
-                xcoord+= currentSpeed;
-                break;
-            case SOUTH:
-                ycoord+= currentSpeed;
-                break;
-            case WEST:
-                xcoord+= -currentSpeed;
-                break;
+        if (!isLoaded) {
+            switch (dir) {
+                case NORTH -> ycoord += -currentSpeed;
+                case EAST -> xcoord += currentSpeed;
+                case SOUTH -> ycoord += currentSpeed;
+                case WEST -> xcoord += -currentSpeed;
+            }
+            position.setLocation(xcoord, ycoord);
         }
-        position.setLocation(xcoord,ycoord);
     }
 
     /**

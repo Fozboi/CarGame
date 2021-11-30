@@ -4,7 +4,7 @@ import java.awt.*;
 /**
  * The class Saab95 is a subclass of Car and contains values and methods for a specific type of car
  */
-public class Saab95 extends Car implements HasTurbo{
+public class Saab95 extends Car implements IHasTurbo {
 
     /**
      * Creates the function for turbo, where a true value sets the turbo on, and a false value sets the turbo to off.

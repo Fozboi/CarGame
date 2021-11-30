@@ -5,7 +5,7 @@ package src;
  * method for turning on the turbo
  * method for turning off the turbo
  */
-public interface HasTurbo {
+public interface IHasTurbo {
     void setTurboOn();
     void setTurboOff();
 }
