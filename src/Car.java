@@ -137,6 +137,8 @@ public abstract class Car implements IMovable, IHasEngine {
      */
     public void setPosition(Point position){
         this.position = position;
+        xcoord = (int) position.getX();
+        ycoord = (int) position.getY();
     }
 
     /**
