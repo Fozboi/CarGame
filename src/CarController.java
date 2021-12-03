@@ -18,8 +18,8 @@ import java.util.HashMap;
 public class CarController {
     // member fields:
 
-    // The delay (ms) corresponds to 20 updates a sec (hz)
-    private final int delay = 50;
+    // The delay (ms) corresponds to about 60 updates a sec (hz)
+    private final int delay = 17;
     // The timer is started with an listener (see below) that executes the statements
     // each step between delays.
     private Timer timer = new Timer(delay, new TimerListener());
@@ -27,7 +27,6 @@ public class CarController {
     public final int carSpacing = 100;
     public final int maxNrCars = 8;
     public Dimension worldSize = new Dimension(carSpacing*maxNrCars, 600);
-    private HashMap<Car, Dimension> carSizes = new HashMap<>();
     // The frame that represents this instance View of the MVC pattern
     CarView frame;
     // A list of cars, modify if needed
