@@ -19,7 +19,7 @@ public class CarController {
     // member fields:
 
     // The delay (ms) corresponds to about 60 updates a sec (hz)
-    private final int delay = 17;
+    private final int delay = 50;
     // The timer is started with an listener (see below) that executes the statements
     // each step between delays.
     private Timer timer = new Timer(delay, new TimerListener());
@@ -58,7 +58,6 @@ public class CarController {
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
 
-            fitCars();
             for (Car car : cars) {
                 if (hitWall(car)){
                     turnAround(car);
@@ -168,7 +167,7 @@ public class CarController {
         if(cars.size() == 0)
             found = true;
         else {
-            for (int i = 0; i <= 9; i++) {
+            for (int i = 0; i <= 7; i++) {
 
                 for (Car car : cars) {
                     if (car.getPosition().getX() == i * carSpacing) {

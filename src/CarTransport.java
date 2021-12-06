@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**
  * CarTransport for cars, implements interface CanLoad, Movable, HasTrailer and HasEngine
  */
-public class CarTransport implements ICanLoad<Car>, IMovable, IHasTrailer, IHasEngine {
+public class CarTransport extends Car implements ICanLoad<Car>, IHasTrailer {
     Truck hasATruck;
     int loadCapacity;
     double pickupRange;
@@ -28,6 +28,7 @@ public class CarTransport implements ICanLoad<Car>, IMovable, IHasTrailer, IHasE
      * initialises an arraylist with the capacity of the total amount of cars possible to load
      */
     public CarTransport(int loadCapacity){
+        super(2,Color.BLUE,90,"CarTransport");
         hasATruck = new Scania();
         this.loadCapacity = loadCapacity;
         pickupRange = 20;
@@ -151,7 +152,6 @@ public class CarTransport implements ICanLoad<Car>, IMovable, IHasTrailer, IHasE
 
         for(int i = 0; i < loadedCars.size(); i++){
             loadedCars.get(i).setPosition(newPos);
-            loadedCars.get(i).setDir(hasATruck.getDir());
         }
     }
 
@@ -161,6 +161,11 @@ public class CarTransport implements ICanLoad<Car>, IMovable, IHasTrailer, IHasE
     @Override
     public void turnLeft() {
         hasATruck.turnLeft();
+        int newDir = hasATruck.getDir();
+
+        for(Car car : loadedCars){
+            car.setDir(newDir);
+        }
     }
 
     /**
@@ -169,6 +174,11 @@ public class CarTransport implements ICanLoad<Car>, IMovable, IHasTrailer, IHasE
     @Override
     public void turnRight() {
         hasATruck.turnRight();
+        int newDir = hasATruck.getDir();
+
+        for(Car car : loadedCars){
+            car.setDir(newDir);
+        }
     }
 
     /**

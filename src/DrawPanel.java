@@ -31,13 +31,6 @@ public class DrawPanel extends JPanel{
                 carImageMap.put(car,findImageFromFile(car));
             }
         }
-
-        ArrayList<Car> abundantCars = new ArrayList<>();
-
-        carImageMap.forEach((car, bufferedImage) -> {
-            if(!carController.getCars().contains(car)){abundantCars.add(car);}});
-
-        for(Car car : abundantCars){carImageMap.remove(car);}
     }
 
     public BufferedImage findImageFromFile(Car car){

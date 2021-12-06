@@ -63,14 +63,18 @@ public abstract class Car implements IMovable, IHasEngine {
      * turns the car to the left
      */
     public void turnLeft(){
-        dir = (dir+3)%4;
+        if (!isLoaded) {
+            dir = (dir + 3) % 4;
+        }
     }
 
     /**
      * turns the car to the right
      */
     public void turnRight(){
-        dir = (dir+1)%4;
+        if (!isLoaded) {
+            dir = (dir + 1) % 4;
+        }
     }
 
     /**

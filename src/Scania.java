@@ -48,13 +48,13 @@ public class Scania extends Truck{
      */
     @Override
     public void setTrailerAngle(double angle){
-        if(angle <= maxTrailerAngle && angle > minTrailerAngle){
+        if(angle <= maxTrailerAngle && angle >= minTrailerAngle){
             if(getCurrentSpeed() == 0){
                 trailerAngle = angle;
             }
-            else throw new IllegalStateException("Can't change trailer angle while vehicle is moving");
+            else System.out.println("Cant change trailer angle while moving");
         }
-        else throw new IllegalArgumentException("Only angles between 0 and 70 are allowed");
+        else System.out.println("Only angles between 0 and 70 are allowed");
     }
 
     /**
