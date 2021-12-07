@@ -42,8 +42,6 @@ public class CarController {
         cc.addCar(new Volvo240());
         cc.addCar(new Saab95());
         cc.addCar(new Scania());
-        //below is only for testing hitWall in horizontal directions
-        //cc.cars.get(0).turnRight();
         // Start a new view and send a reference of self
 
         // Start the timer
@@ -90,14 +88,6 @@ public class CarController {
         car.turnLeft();
         car.turnLeft();
         car.startEngine();
-    }
-
-    public void fitCars(){
-        for(int i = 0; i < cars.size(); i++){
-            Point oldPos = cars.get(i).getPosition();
-            Point newPos = new Point((int) i*100, (int) oldPos.getY());
-            cars.get(i).setPosition(newPos);
-        }
     }
 
     // Calls the gas method for each car once

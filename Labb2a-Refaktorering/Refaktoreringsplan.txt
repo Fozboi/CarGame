@@ -1,19 +1,24 @@
-Vi har kommit fram till en refaktoreringsplan i tre steg:
+Vi har kommit fram till en refaktoreringsplan i fyra steg:
 1. Göra om CarTransport till en subklass till truck istället för att använda en instans av Scania.
 Detta gör så att vi blir av med många onödiga beroenden mellan CarTransport och de olika interfaces
 vi har, då dessa implementeras i CarTransports blivande superklasser, vilket reducerar coupling.
 Vi blir även av med mycket kodduplicering i CarTransport som vår nuvarande lösning har lett till.
 
 2. Ändra om i vår MVC.
-I dagsläget har vi en view och en controller, men ingen model. Vi ska skapa en model som kommer hantera timern för spelet
-och alla metoder som tillkommer den varje tick. mycket av detta finns i dagsläget i controller (vi är osäkra om de funktioner
-vi vill lägga i model hör hemma där eller controller, säg gärna till om vi tänkt fel). Sedan är det tänkt att view initierar 
-alla komponenter (fönstret, knappar och så vidare). Controller kommer sen tillsätta funktionaliteten på knapparna och sköta
-tilläggningen av bilar. Återigen ifall detta låter som en dålig plan vill vi gärna veta det.
+Vi har i dagsläget en view, controller men ingen model. Detta vill vi åtgärda för att använda ett korrekt
+MVC pattern i vår kod. Tanken är att skapa en ny klass CarModel och flytta runt funktionalitet mellan
+klasserna för att minska beroenden mellan dem och samtidigt efterfölja SRP.
+En tanke som vi gärna hade fått en kommentar på är ifall vi skulle kunna använda DrawPanel som view elementet
+och döpa om carview till model, är det mer rätt? vi tycker det ser ut lite som att både DrawPanel och CarView hanterar
+saker som bör vara i View klassen.
 
-3. Skapa lite packages
+3. Försöka skapa beroenden på abstraktioner istället för implementationer
+Alltså efterfölja DIP, vi har idag många interfaces som är väl segregerade, men vi använder dem inte
+för att reducera beroenden, vi kan ändra på detta för att minska beroenden i koden som helhet.
+
+4. Skapa lite packages
 I dagsläget har vi bara ett package, src, som innehåller alla klasser och interfaces. För att öka package cohesion och sänka 
-coupling kommer src delas in i Loaders, Cars och CarGame som visas i vårt UML-diagram. 
+coupling kommer src delas in i Entities och CarGame som visas i vårt UML-diagram.
 
 Vi tror våra steg går att göra parallellt med varandra av olika utvecklare, det enda som kan krocka lite är indelningen i
 packages och arbetet med CarTransport, då CarTransport är kopplingen mellan två packages och det kanske skulle kunna
@@ -24,9 +29,3 @@ delarna.
 Vi har sedan tidigare delat in våra interfaces i mindre bitar för att få bra interface segregation, annars hade det varit 
 en ytterligare bra refaktoreringspunkt. Vidare anser vi att alla klasser (förutom Controller och View) har bra SRP, så bara 
 dessa behöver åtgärdas som vi gör i steg 2.
-
-
-
-
-note to self: fråga om vi har ritat rätt med våra MVC klasser i UML-diagrammen och åtgärda om vi inte har det. 
-Glöm ej skicka in nya png om ändring görs.
