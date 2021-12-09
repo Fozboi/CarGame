@@ -1,4 +1,4 @@
-package src;
+package src.Entities;
 
 /**
  * Interface that declares methods for objects that can move

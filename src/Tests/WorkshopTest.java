@@ -1,7 +1,11 @@
-package src;
+package src.Tests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import src.Entities.Car;
+import src.Entities.Saab95;
+import src.Entities.Volvo240;
+import src.Entities.Workshop;
 
 import static org.junit.jupiter.api.Assertions.*;
 

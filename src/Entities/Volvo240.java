@@ -1,10 +1,12 @@
-package src;
+package src.Entities;
+
+import src.Entities.Car;
 
 import java.awt.*;
 /**
  * the Class Volvo240 is a sub class to Car and contains values and methods for a specific type of car.
  */
-public class Volvo240 extends Car{
+public class Volvo240 extends Car {
 
     /**
      * Sets a fixed value of the trim factor that is used in the calculation of the speed of the car.

@@ -1,4 +1,4 @@
-package src;
+package src.Entities;
 
 /**
  * Creates the interface (requirements) for vehicles (or workshops) that can load things:

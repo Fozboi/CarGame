@@ -1,4 +1,4 @@
-package src;
+package src.CarGame;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;

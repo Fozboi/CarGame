@@ -1,4 +1,4 @@
-package src;
+package src.Entities;
 
 /**
  * Creates the interface (requirements) for having a trailer:
@@ -13,7 +13,6 @@ public interface IHasTrailer {
     void setTrailerAngle(double angle);
     double getTrailerAngle();
     boolean trailerIsUp();
-    boolean trailerIsDown();
     void setTrailerUp();
     void setTrailerDown();
 }

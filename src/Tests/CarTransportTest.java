@@ -1,10 +1,14 @@
-package src;
+package src.Tests;
 
 import org.junit.jupiter.api.BeforeEach;
 
 import java.awt.*;
-import org.junit.jupiter.api.Assertions;
+
 import org.junit.jupiter.api.Test;
+import src.Entities.CarTransport;
+import src.Entities.Saab95;
+import src.Entities.Scania;
+import src.Entities.Volvo240;
 
 import static org.junit.jupiter.api.Assertions.*;
 

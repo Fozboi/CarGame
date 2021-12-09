@@ -1,13 +1,12 @@
-package src;
+package src.CarGame;
 
-import src.Volvo240;
+import src.Entities.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /*
 * This class represents the Controller part in the MVC pattern.
@@ -182,4 +181,11 @@ public class CarController {
     }
 
     public ArrayList<Car> getCars(){return cars;}
+
+    frame.gasButton.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            carController.gas(gasAmount);
+        }
+    });
 }

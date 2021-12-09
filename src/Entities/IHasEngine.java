@@ -1,4 +1,4 @@
-package src;
+package src.Entities;
 
 /**
  * Creates the interface (requirements) for having an engine:
