@@ -1,11 +1,9 @@
 package src.CarGame;
 
+import src.Entities.Speedometer;
+
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * This class represents the full view of the MVC pattern of your car simulator.
@@ -23,12 +21,12 @@ public class CarView extends JFrame{
     CarController carController;
 
     DrawPanel drawPanel;
-
+    Speedometer speedometer;
     JPanel controlPanel = new JPanel();
+    JTextField carModelField;
 
     JPanel gasPanel = new JPanel();
     JSpinner gasSpinner = new JSpinner();
-    int gasAmount = 0;
     JLabel gasLabel = new JLabel("Amount of gas");
 
     JButton gasButton = new JButton("Gas");
@@ -41,10 +39,14 @@ public class CarView extends JFrame{
     JButton startButton = new JButton("Start all cars");
     JButton stopButton = new JButton("Stop all cars");
 
+    JButton addCarButton = new JButton("Add car");
+    JButton removeCarButton = new JButton("Remove car");
+
     // Constructor
     public CarView(String framename, CarController cc){
         this.carController = cc;
         drawPanel = new DrawPanel(X, Y-240, carController);
+        initSpeedometer();
         initComponents(framename);
     }
 
@@ -52,7 +54,7 @@ public class CarView extends JFrame{
     private void initComponents(String title) {
 
         this.setTitle(title);
-        this.setPreferredSize(new Dimension(X,Y));
+        this.setPreferredSize(new Dimension(X,Y + speedometer.getPreferredSize().height));
         this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 
         this.add(drawPanel);
@@ -63,11 +65,6 @@ public class CarView extends JFrame{
                         100, //max
                         1);//step
         gasSpinner = new JSpinner(spinnerModel);
-        gasSpinner.addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent e) {
-                gasAmount = (int) ((JSpinner)e.getSource()).getValue();
-            }
-        });
 
         gasPanel.setLayout(new BorderLayout());
         gasPanel.add(gasLabel, BorderLayout.PAGE_START);
@@ -96,61 +93,21 @@ public class CarView extends JFrame{
         stopButton.setPreferredSize(new Dimension(X/5-15,200));
         this.add(stopButton);
 
-        gasButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                carController.gas(gasAmount);
-            }
-        });
+        addCarButton.setBackground(Color.green);
+        addCarButton.setForeground(Color.black);
+        addCarButton.setPreferredSize(new Dimension(X/5-15,100));
+        this.add(addCarButton);
 
-        brakeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                carController.brake(gasAmount);
-            }
-        });
+        removeCarButton.setBackground(Color.orange);
+        removeCarButton.setForeground(Color.black);
+        removeCarButton.setPreferredSize(new Dimension(X/5-15,100));
+        this.add(removeCarButton);
 
-        turboOnButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                carController.setTurboOn();
-            }
-        });
+        JLabel carModelText = new JLabel("Bilmodell:");
+        carModelField = new JTextField("");
 
-        turboOffButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                carController.setTurboOff();
-            }
-        });
-
-        liftBedButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                carController.liftBed();
-            }
-        });
-
-        lowerBedButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                carController.lowerBed();
-            }
-        });
-
-        startButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                carController.startEngine();
-            }
-        });
-
-        stopButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                carController.stopEngine();
-            }
-        });
+        this.add(carModelText,6);
+        this.add(carModelField, 7);
 
         // Make the frame pack all it's components by respecting the sizes if possible.
         this.pack();
@@ -163,5 +120,11 @@ public class CarView extends JFrame{
         this.setVisible(true);
         // Make sure the frame exits when "x" is pressed
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    public void initSpeedometer(){
+        speedometer = new Speedometer(carController);
+        this.add(speedometer);
+        speedometer.setPreferredSize(new Dimension(carController.worldSize.width,15));
     }
 }

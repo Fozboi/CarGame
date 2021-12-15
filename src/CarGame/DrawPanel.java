@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -33,6 +34,13 @@ public class DrawPanel extends JPanel{
                 carImageMap.put(car,findImageFromFile(car));
             }
         }
+
+        ArrayList<Car> abundantCars = new ArrayList<>();
+
+        carImageMap.forEach((car,image) -> {
+            if(!carController.getCars().contains(car)){abundantCars.add(car);}});
+
+        for(Car car : abundantCars){carImageMap.remove(car);}
     }
 
     public BufferedImage findImageFromFile(Car car){
