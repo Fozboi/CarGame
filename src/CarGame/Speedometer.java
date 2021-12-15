@@ -1,6 +1,7 @@
-package src.Entities;
+package src.CarGame;
 
 import src.CarGame.CarController;
+import src.Entities.Car;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,6 +16,7 @@ public class Speedometer extends JLabel{
         setText();
     }
 
+    @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         setText();

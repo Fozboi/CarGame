@@ -1,4 +1,5 @@
 Vi har kommit fram till en refaktoreringsplan i fyra steg:
+
 1. Göra om CarTransport till en subklass till truck istället för att använda en instans av Scania.
 Detta gör så att vi blir av med många onödiga beroenden mellan CarTransport och de olika interfaces
 vi har, då dessa implementeras i CarTransports blivande superklasser, vilket reducerar coupling.

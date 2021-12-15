@@ -1,7 +1,5 @@
 package src.CarGame;
 
-import src.Entities.Speedometer;
-
 import javax.swing.*;
 import java.awt.*;
 
