@@ -25,6 +25,7 @@ public class DrawPanel extends JPanel{
         this.setBackground(Color.green);
         this.carListObserver = cl;
 
+        updateCarImageMap();
     }
 
     public void updateCarImageMap(){

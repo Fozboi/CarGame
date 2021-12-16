@@ -15,9 +15,9 @@ public class CarView extends JFrame{
     private static final int Y = 800;
 
     CarListObserver carListObserver;
-
     DrawPanel drawPanel;
     Speedometer speedometer;
+
     JPanel controlPanel = new JPanel();
     JPanel bigButtonPanel = new JPanel();
 

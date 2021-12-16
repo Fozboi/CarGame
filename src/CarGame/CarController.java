@@ -26,8 +26,6 @@ public class CarController implements Observer {
         CarController cc = new CarController();
 
         cc.cm = new CarModel();
-        cc.cm.carListObserver = new CarListObserver();
-        cc.cm.frame = new CarView("CarSim 1.0", cc.cm.carListObserver);
 
         cc.cm.addCar(new Volvo240());
         cc.cm.addCar(new Saab95());

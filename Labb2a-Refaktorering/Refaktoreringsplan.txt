@@ -1,4 +1,4 @@
-Vi har kommit fram till en refaktoreringsplan i fyra steg:
+Vi har kommit fram till en refaktoreringsplan i tre steg:
 
 1. Göra om CarTransport till en subklass till truck istället för att använda en instans av Scania.
 Detta gör så att vi blir av med många onödiga beroenden mellan CarTransport och de olika interfaces
@@ -12,10 +12,6 @@ klasserna för att minska beroenden mellan dem och samtidigt efterfölja SRP.
 En tanke som vi gärna hade fått en kommentar på är ifall vi skulle kunna använda DrawPanel som view elementet
 och döpa om carview till model, är det mer rätt? vi tycker det ser ut lite som att både DrawPanel och CarView hanterar
 saker som bör vara i View klassen.
-
-3. Försöka skapa beroenden på abstraktioner istället för implementationer
-Alltså efterfölja DIP, vi har idag många interfaces som är väl segregerade, men vi använder dem inte
-för att reducera beroenden, vi kan ändra på detta för att minska beroenden i koden som helhet.
 
 4. Skapa lite packages
 I dagsläget har vi bara ett package, src, som innehåller alla klasser och interfaces. För att öka package cohesion och sänka 

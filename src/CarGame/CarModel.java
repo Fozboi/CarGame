@@ -19,13 +19,21 @@ public class CarModel extends Observable {
 
     public final int carSpacing = 100;
     public final int maxNrCars = 10;
+
     public Dimension worldSize = new Dimension(carSpacing*maxNrCars, 600);
+
     ArrayList<Car> cars = new ArrayList<>();
+    ArrayList<Saab95> turboCars = new ArrayList<>();
+    ArrayList<Truck> trailerCars = new ArrayList<>();
+
     CarListObserver carListObserver;
     CarView frame;
 
 
     public CarModel(){
+        carListObserver = new CarListObserver();
+        frame = new CarView("CarSim 1.0", carListObserver);
+
         timer.start();
     }
 
@@ -83,35 +91,27 @@ public class CarModel extends Observable {
         }
     }
 
-    public <T extends IHasTurbo> void setTurboOn(){
-        for(Car car : cars){
-            try{
-                ((T) car).setTurboOn();
-            }catch(ClassCastException ex){}
+    public void setTurboOn(){
+        for(Saab95 car : turboCars) {
+            car.setTurboOn();
         }
     }
 
-    public <T extends IHasTurbo> void setTurboOff(){
-        for(Car car : cars){
-            try{
-                ((T) car).setTurboOn();
-            }catch(ClassCastException ex){}
+    public void setTurboOff(){
+        for(Saab95 car : turboCars) {
+            car.setTurboOff();
         }
     }
 
-    public <T extends IHasTrailer> void liftBed(){
-        for(Car car : cars){
-            try{
-                ((T) car).setTrailerUp();
-            }catch(ClassCastException ex){}
+    public void liftBed(){
+        for(Truck car : trailerCars) {
+            car.setTrailerUp();
         }
     }
 
-    public <T extends IHasTrailer> void lowerBed(){
-        for(Car car : cars){
-            try{
-                ((T) car).setTrailerDown();
-            }catch(ClassCastException ex){}
+    public void lowerBed(){
+        for(Truck car : trailerCars) {
+            car.setTrailerDown();
         }
     }
 
@@ -154,6 +154,14 @@ public class CarModel extends Observable {
             System.out.println("No free space!");
         }else{
             cars.add(inputCar);
+
+            if (inputCar instanceof Saab95){
+                turboCars.add((Saab95) inputCar);
+            }
+            else if (inputCar instanceof Truck){
+                trailerCars.add((Truck) inputCar);
+            }
+
             carListObserver.updateCarList(cars);
         }
     }
@@ -173,16 +181,5 @@ public class CarModel extends Observable {
     public void removeCar(){
         cars.remove(cars.size()-1);
         carListObserver.updateCarList(cars);
-        adjustCars();
     }
-
-    private void adjustCars(){
-        for(int i = 0; i < cars.size(); i++){
-            Point oldPos = cars.get(i).getPosition();
-            Point newPos = new Point((int) i*carSpacing,(int) oldPos.getY());
-            cars.get(i).setPosition(newPos);
-        }
-    }
-
-    public ArrayList<Car> getCars(){return cars;}
 }
