@@ -7,8 +7,6 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Observable;
-import java.util.Observer;
 
 /*
 * This class represents the Controller part in the MVC pattern.
@@ -16,7 +14,7 @@ import java.util.Observer;
 * modifying the model state and the updating the view.
  */
 
-public class CarController implements Observer {
+public class CarController{
     CarModel cm;
 
     private int gasAmount = 0;
@@ -32,11 +30,6 @@ public class CarController implements Observer {
         cc.cm.addCar(new Scania());
 
         cc.initFunctionality();
-    }
-
-    @Override
-    public void update(Observable carModel, Object arg) {
-        cm.frame.repaint();
     }
 
     private void initFunctionality() {
