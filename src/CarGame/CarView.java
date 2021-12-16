@@ -8,20 +8,18 @@ import java.awt.*;
  * It initializes with being center on the screen and attaching it's controller in it's state.
  * It communicates with the Controller by calling methods of it when an action fires of in
  * each of it's components.
- * TODO: Write more actionListeners and wire the rest of the buttons
  **/
 
 public class CarView extends JFrame{
-    private static final int X = 800;
+    private static final int X = 1100;
     private static final int Y = 800;
 
-    // The controller member
-    CarController carController;
+    CarListObserver carListObserver;
 
     DrawPanel drawPanel;
     Speedometer speedometer;
     JPanel controlPanel = new JPanel();
-    JTextField carModelField;
+    JPanel bigButtonPanel = new JPanel();
 
     JPanel gasPanel = new JPanel();
     JSpinner gasSpinner = new JSpinner();
@@ -41,9 +39,9 @@ public class CarView extends JFrame{
     JButton removeCarButton = new JButton("Remove car");
 
     // Constructor
-    public CarView(String framename, CarController cc){
-        this.carController = cc;
-        drawPanel = new DrawPanel(X, Y-240, carController);
+    public CarView(String framename, CarListObserver cl){
+        this.carListObserver = cl;
+        drawPanel = new DrawPanel(X, Y-240, carListObserver);
         initSpeedometer();
         initComponents(framename);
     }
@@ -83,29 +81,28 @@ public class CarView extends JFrame{
 
         startButton.setBackground(Color.blue);
         startButton.setForeground(Color.green);
-        startButton.setPreferredSize(new Dimension(X/5-15,200));
-        this.add(startButton);
+        startButton.setPreferredSize(new Dimension(X/5-25,100));
 
         stopButton.setBackground(Color.red);
         stopButton.setForeground(Color.black);
-        stopButton.setPreferredSize(new Dimension(X/5-15,200));
-        this.add(stopButton);
+        stopButton.setPreferredSize(new Dimension(X/5-25,100));
 
         addCarButton.setBackground(Color.green);
         addCarButton.setForeground(Color.black);
-        addCarButton.setPreferredSize(new Dimension(X/5-15,100));
-        this.add(addCarButton);
+        addCarButton.setPreferredSize(new Dimension(X/5-25,100));
 
         removeCarButton.setBackground(Color.orange);
         removeCarButton.setForeground(Color.black);
-        removeCarButton.setPreferredSize(new Dimension(X/5-15,100));
-        this.add(removeCarButton);
+        removeCarButton.setPreferredSize(new Dimension(X/5-25,100));
 
-        JLabel carModelText = new JLabel("Bilmodell:");
-        carModelField = new JTextField("");
+        bigButtonPanel.setLayout(new GridLayout(2,2));
+        bigButtonPanel.add(startButton, 0);
+        bigButtonPanel.add(addCarButton,1);
+        bigButtonPanel.add(stopButton,2);
+        bigButtonPanel.add(removeCarButton,3);
+        bigButtonPanel.setPreferredSize(new Dimension(X/2-102,200));
+        this.add(bigButtonPanel);
 
-        this.add(carModelText,6);
-        this.add(carModelField, 7);
 
         // Make the frame pack all it's components by respecting the sizes if possible.
         this.pack();
@@ -121,8 +118,8 @@ public class CarView extends JFrame{
     }
 
     public void initSpeedometer(){
-        speedometer = new Speedometer(carController);
+        speedometer = new Speedometer(carListObserver);
         this.add(speedometer);
-        speedometer.setPreferredSize(new Dimension(carController.worldSize.width,15));
+        speedometer.setPreferredSize(new Dimension(X,15));
     }
 }

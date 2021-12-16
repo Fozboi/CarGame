@@ -1,6 +1,5 @@
 package src.CarGame;
 
-import src.CarGame.CarController;
 import src.Entities.Car;
 
 import java.awt.*;
@@ -16,29 +15,30 @@ import javax.swing.*;
 
 public class DrawPanel extends JPanel{
 
-    CarController carController;
+    CarListObserver carListObserver;
     HashMap<Car,BufferedImage> carImageMap = new HashMap<>();
 
     // Initializes the panel and reads the images
-    public DrawPanel(int x, int y, CarController cc) {
+    public DrawPanel(int x, int y, CarListObserver cl) {
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));
         this.setBackground(Color.green);
-        this.carController = cc;
+        this.carListObserver = cl;
 
     }
 
     public void updateCarImageMap(){
-        for(Car car : carController.getCars()){
+        for(Car car : carListObserver.getCarList()){
             if (!carImageMap.containsKey(car)){
                 carImageMap.put(car,findImageFromFile(car));
             }
         }
 
+        //when cars are deleted from list of cars, also delete them from carImageMap
         ArrayList<Car> abundantCars = new ArrayList<>();
 
         carImageMap.forEach((car,image) -> {
-            if(!carController.getCars().contains(car)){abundantCars.add(car);}});
+            if(!carListObserver.getCarList().contains(car)){abundantCars.add(car);}});
 
         for(Car car : abundantCars){carImageMap.remove(car);}
     }
@@ -58,7 +58,7 @@ public class DrawPanel extends JPanel{
     protected void paintComponent(Graphics g) {
         updateCarImageMap();
         super.paintComponent(g);
-        for(Car car : carController.getCars()){
+        for(Car car : carListObserver.getCarList()){
             g.drawImage(carImageMap.get(car), (int)car.getPosition().getX(), (int)car.getPosition().getY(), null);
         }
     }

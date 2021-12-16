@@ -1,6 +1,5 @@
 package src.CarGame;
 
-import src.CarGame.CarController;
 import src.Entities.Car;
 
 import javax.swing.*;
@@ -9,10 +8,10 @@ import java.text.DecimalFormat;
 import java.util.ConcurrentModificationException;
 
 public class Speedometer extends JLabel{
-    private CarController carController;
+    private final CarListObserver carListObserver;
 
-    public Speedometer(CarController carController){
-        this.carController = carController;
+    public Speedometer(CarListObserver cl){
+        this.carListObserver = cl;
         setText();
     }
 
@@ -29,8 +28,8 @@ public class Speedometer extends JLabel{
         try{
             String labelText = "";
 
-            for(Car car : carController.getCars()){
-                labelText = labelText + car.getModelName() + " : " + df.format(car.getCurrentSpeed()) + "      |      ";
+            for(Car car : carListObserver.getCarList()){
+                labelText = labelText + car.getModelName() + " : " + df.format(car.getCurrentSpeed()) + "     |    ";
             }
 
             this.setText(labelText);
