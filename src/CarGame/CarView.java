@@ -2,6 +2,8 @@ package src.CarGame;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * This class represents the full view of the MVC pattern of your car simulator.
@@ -10,11 +12,11 @@ import java.awt.*;
  * each of it's components.
  **/
 
-public class CarView extends JFrame{
+public class CarView extends JFrame {
     private static final int X = 1100;
     private static final int Y = 800;
 
-    CarListObserver carListObserver;
+    CarListHolder carListHolder;
     DrawPanel drawPanel;
     Speedometer speedometer;
 
@@ -39,9 +41,9 @@ public class CarView extends JFrame{
     JButton removeCarButton = new JButton("Remove car");
 
     // Constructor
-    public CarView(String framename, CarListObserver cl){
-        this.carListObserver = cl;
-        drawPanel = new DrawPanel(X, Y-240, carListObserver);
+    public CarView(String framename, CarListHolder cl){
+        this.carListHolder = cl;
+        drawPanel = new DrawPanel(X, Y-240, carListHolder);
         initSpeedometer();
         initComponents(framename);
     }
@@ -118,7 +120,7 @@ public class CarView extends JFrame{
     }
 
     public void initSpeedometer(){
-        speedometer = new Speedometer(carListObserver);
+        speedometer = new Speedometer(carListHolder);
         this.add(speedometer);
         speedometer.setPreferredSize(new Dimension(X,15));
     }

@@ -7,11 +7,11 @@ import java.awt.*;
 import java.text.DecimalFormat;
 import java.util.ConcurrentModificationException;
 
-public class Speedometer extends JLabel{
-    private final CarListObserver carListObserver;
+public class Speedometer extends JLabel implements ModelObserver{
+    private final CarListHolder carListHolder;
 
-    public Speedometer(CarListObserver cl){
-        this.carListObserver = cl;
+    public Speedometer(CarListHolder cl){
+        this.carListHolder = cl;
         setText();
     }
 
@@ -28,7 +28,7 @@ public class Speedometer extends JLabel{
         try{
             String labelText = "";
 
-            for(Car car : carListObserver.getCarList()){
+            for(Car car : carListHolder.getCarList()){
                 labelText = labelText + car.getModelName() + " : " + df.format(car.getCurrentSpeed()) + "     |    ";
             }
 
@@ -36,5 +36,10 @@ public class Speedometer extends JLabel{
         }catch(ConcurrentModificationException e){System.out.println("Stopped that weird bug again");}
         //sometimes when launching the program the exception above is thrown...
 
+    }
+
+    @Override
+    public void update() {
+        repaint();
     }
 }

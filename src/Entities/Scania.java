@@ -24,13 +24,12 @@ public class Scania extends Truck{
      * returns the speed factor if the trailer is up, otherwise returns illegal state exception
      */
     @Override
-    public double speedFactor(){
-        if(trailerIsUp()){
+    public double speedFactor() {
+        if (trailerIsUp()) {
             return getEnginePower() * 0.01;
-        }
-        else throw new IllegalStateException("Can't move while trailer is raised");
+        } else System.out.println("Can't move while trailer is raised");
+            return 0;
     }
-
     /**
      * sets the trailer angle to an input value, and only accepts values above min(0) and equal to or below max (70),
      * and only does so if the trailer speed is zero

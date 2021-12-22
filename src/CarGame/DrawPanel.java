@@ -13,23 +13,23 @@ import javax.swing.*;
 
 // This panel represent the animated part of the view with the car images.
 
-public class DrawPanel extends JPanel{
+public class DrawPanel extends JPanel implements ModelObserver{
 
-    CarListObserver carListObserver;
+    CarListHolder carListHolder;
     HashMap<Car,BufferedImage> carImageMap = new HashMap<>();
 
     // Initializes the panel and reads the images
-    public DrawPanel(int x, int y, CarListObserver cl) {
+    public DrawPanel(int x, int y, CarListHolder cl) {
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));
         this.setBackground(Color.green);
-        this.carListObserver = cl;
+        this.carListHolder = cl;
 
         updateCarImageMap();
     }
 
     public void updateCarImageMap(){
-        for(Car car : carListObserver.getCarList()){
+        for(Car car : carListHolder.getCarList()){
             if (!carImageMap.containsKey(car)){
                 carImageMap.put(car,findImageFromFile(car));
             }
@@ -39,7 +39,7 @@ public class DrawPanel extends JPanel{
         ArrayList<Car> abundantCars = new ArrayList<>();
 
         carImageMap.forEach((car,image) -> {
-            if(!carListObserver.getCarList().contains(car)){abundantCars.add(car);}});
+            if(!carListHolder.getCarList().contains(car)){abundantCars.add(car);}});
 
         for(Car car : abundantCars){carImageMap.remove(car);}
     }
@@ -59,8 +59,13 @@ public class DrawPanel extends JPanel{
     protected void paintComponent(Graphics g) {
         updateCarImageMap();
         super.paintComponent(g);
-        for(Car car : carListObserver.getCarList()){
+        for(Car car : carListHolder.getCarList()){
             g.drawImage(carImageMap.get(car), (int)car.getPosition().getX(), (int)car.getPosition().getY(), null);
         }
+    }
+
+    @Override
+    public void update() {
+        repaint();
     }
 }

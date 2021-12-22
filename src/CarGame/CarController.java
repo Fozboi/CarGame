@@ -16,86 +16,79 @@ import java.awt.event.ActionListener;
 
 public class CarController{
     CarModel cm;
-
+    CarView cv;
+    CarListHolder carListHolder;
     private int gasAmount = 0;
 
-    public static void main(String[] args) {
-        // Instance of this class
-        CarController cc = new CarController();
-
-        cc.cm = new CarModel();
-
-        cc.cm.addCar(new Volvo240());
-        cc.cm.addCar(new Saab95());
-        cc.cm.addCar(new Scania());
-
-        cc.initFunctionality();
+    public CarController(){
+        carListHolder = new CarListHolder();
+        cv = new CarView("CarSim 1.0", carListHolder);
     }
 
-    private void initFunctionality() {
-        cm.frame.gasSpinner.addChangeListener(new ChangeListener() {
+    protected void initFunctionality() {
+        cv.gasSpinner.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
                 gasAmount = (int) ((JSpinner)e.getSource()).getValue();
             }
         });
 
-        cm.frame.gasButton.addActionListener(new ActionListener() {
+        cv.gasButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cm.gas(gasAmount);
             }
         });
 
-        cm.frame.brakeButton.addActionListener(new ActionListener() {
+        cv.brakeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cm.brake(gasAmount);
             }
         });
 
-        cm.frame.turboOnButton.addActionListener(new ActionListener() {
+        cv.turboOnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cm.setTurboOn();
             }
         });
 
-        cm.frame.turboOffButton.addActionListener(new ActionListener() {
+        cv.turboOffButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cm.setTurboOff();
             }
         });
 
-        cm.frame.liftBedButton.addActionListener(new ActionListener() {
+        cv.liftBedButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cm.liftBed();
             }
         });
 
-        cm.frame.lowerBedButton.addActionListener(new ActionListener() {
+        cv.lowerBedButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cm.lowerBed();
             }
         });
 
-        cm.frame.startButton.addActionListener(new ActionListener() {
+        cv.startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cm.startEngine();
             }
         });
 
-        cm.frame.stopButton.addActionListener(new ActionListener() {
+        cv.stopButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cm.stopEngine();
             }
         });
 
-        cm.frame.addCarButton.addActionListener(new ActionListener() {
+        cv.addCarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(cm.cars.size() < 10){
@@ -106,7 +99,7 @@ public class CarController{
             }
         });
 
-        cm.frame.removeCarButton.addActionListener(new ActionListener() {
+        cv.removeCarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(cm.cars.size() == 0){

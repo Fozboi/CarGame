@@ -22,16 +22,15 @@ public class CarModel{
     public Dimension worldSize = new Dimension(carSpacing*maxNrCars, 600);
 
     ArrayList<Car> cars = new ArrayList<>();
-    ArrayList<Saab95> turboCars = new ArrayList<>();
-    ArrayList<Truck> trailerCars = new ArrayList<>();
+    ArrayList<IHasTurbo> turboCars = new ArrayList<>();
+    ArrayList<IHasTrailer> trailerCars = new ArrayList<>();
 
-    CarListObserver carListObserver;
-    CarView frame;
+    CarListHolder carListHolder;
+    private ArrayList<ModelObserver> modelObservers = new ArrayList<>();
 
 
     public CarModel(){
-        carListObserver = new CarListObserver();
-        frame = new CarView("CarSim 1.0", carListObserver);
+        carListHolder = new CarListHolder();
 
         timer.start();
     }
@@ -48,8 +47,19 @@ public class CarModel{
                 }
                 car.move();
             }
-            frame.repaint();
+
+            for (ModelObserver obs : modelObservers){
+                obs.update();
+            }
         }
+    }
+
+    public void addModelObserver(ModelObserver mo){
+        modelObservers.add(mo);
+    }
+
+    public void removeModelObserver(ModelObserver mo){
+        modelObservers.remove(mo);
     }
 
     private boolean hitWall(Car car){
@@ -90,25 +100,25 @@ public class CarModel{
     }
 
     public void setTurboOn(){
-        for(Saab95 car : turboCars) {
+        for(IHasTurbo car : turboCars) {
             car.setTurboOn();
         }
     }
 
     public void setTurboOff(){
-        for(Saab95 car : turboCars) {
+        for(IHasTurbo car : turboCars) {
             car.setTurboOff();
         }
     }
 
     public void liftBed(){
-        for(Truck car : trailerCars) {
+        for(IHasTrailer car : trailerCars) {
             car.setTrailerUp();
         }
     }
 
     public void lowerBed(){
-        for(Truck car : trailerCars) {
+        for(IHasTrailer car : trailerCars) {
             car.setTrailerDown();
         }
     }
@@ -153,14 +163,14 @@ public class CarModel{
         }else{
             cars.add(inputCar);
 
-            if (inputCar instanceof Saab95){
-                turboCars.add((Saab95) inputCar);
+            if (inputCar instanceof IHasTurbo){
+                turboCars.add((IHasTurbo) inputCar);
             }
-            else if (inputCar instanceof Truck){
-                trailerCars.add((Truck) inputCar);
+            else if (inputCar instanceof IHasTrailer){
+                trailerCars.add((IHasTrailer) inputCar);
             }
 
-            carListObserver.updateCarList(cars);
+            carListHolder.updateCarList(cars);
         }
     }
 
@@ -178,6 +188,6 @@ public class CarModel{
 
     public void removeCar(){
         cars.remove(cars.size()-1);
-        carListObserver.updateCarList(cars);
+        carListHolder.updateCarList(cars);
     }
 }
