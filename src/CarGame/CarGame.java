@@ -10,17 +10,14 @@ import src.Entities.Volvo240;
 
 public class CarGame {
     public static void main(String[] args) {
-        // Instance of controller class
-        CarController cc = new CarController();
-
-        cc.cm = new CarModel();
+        CarListHolder cl = new CarListHolder();
+        CarController cc = new CarController(cl);
+        cc.cm = new CarModel(cl);
 
         cc.cm.addCar(new Volvo240());
         cc.cm.addCar(new Saab95());
         cc.cm.addCar(new Scania());
-
-        cc.cm.addModelObserver(cc.cv.drawPanel);
-        cc.cm.addModelObserver(cc.cv.speedometer);
+        cc.cm.addModelObserver(cc.cv);
 
         cc.initFunctionality();
     }

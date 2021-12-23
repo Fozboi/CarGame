@@ -2,17 +2,15 @@ package src.CarGame;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Observable;
-import java.util.Observer;
 
 /**
  * This class represents the full view of the MVC pattern of your car simulator.
- * It initializes with being center on the screen and attaching it's controller in it's state.
+ * It initializes with being center on the screen and attaching its controller in its state.
  * It communicates with the Controller by calling methods of it when an action fires of in
- * each of it's components.
+ * each of its components.
  **/
 
-public class CarView extends JFrame {
+public class CarView extends JFrame implements IModelObserver {
     private static final int X = 1100;
     private static final int Y = 800;
 
@@ -42,7 +40,7 @@ public class CarView extends JFrame {
 
     // Constructor
     public CarView(String framename, CarListHolder cl){
-        this.carListHolder = cl;
+        carListHolder = cl;
         drawPanel = new DrawPanel(X, Y-240, carListHolder);
         initSpeedometer();
         initComponents(framename);
@@ -106,7 +104,7 @@ public class CarView extends JFrame {
         this.add(bigButtonPanel);
 
 
-        // Make the frame pack all it's components by respecting the sizes if possible.
+        // Make the frame pack all its components by respecting the sizes if possible.
         this.pack();
 
         // Get the computer screen resolution
@@ -123,5 +121,10 @@ public class CarView extends JFrame {
         speedometer = new Speedometer(carListHolder);
         this.add(speedometer);
         speedometer.setPreferredSize(new Dimension(X,15));
+    }
+
+    @Override
+    public void update() {
+        repaint();
     }
 }

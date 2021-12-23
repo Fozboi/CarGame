@@ -1,7 +1,5 @@
 package src.CarGame;
 
-import src.Entities.*;
-
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -20,8 +18,8 @@ public class CarController{
     CarListHolder carListHolder;
     private int gasAmount = 0;
 
-    public CarController(){
-        carListHolder = new CarListHolder();
+    public CarController(CarListHolder cl){
+        carListHolder = cl;
         cv = new CarView("CarSim 1.0", carListHolder);
     }
 

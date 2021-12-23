@@ -28,21 +28,17 @@ public class Workshop<T extends Car> implements ICanLoad<T> {
     }
 
     /**
-     * Checks if it is possible to load a vehicle into the workshop by checking so the capacity is noot exceeded
+     * Checks if it is possible to load a vehicle into the workshop by checking so the capacity is not exceeded
      */
     public boolean canLoadObject(T obj){
-        if(loadedCars.size() < loadCapacity){
-            return true;
-        }else return false;
+        return loadedCars.size() < loadCapacity;
     }
 
     /**
      * Unloads a vehicle out of the workshop if it is possible
      */
     public void unloadObject(T obj){
-        if(loadedCars.contains(obj)) {
-            loadedCars.remove(obj);
-        }
+        loadedCars.remove(obj);
     }
 
     public ArrayList<T> getLoadedObjects(){

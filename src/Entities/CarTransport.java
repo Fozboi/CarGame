@@ -42,11 +42,11 @@ public class CarTransport extends Truck implements ICanLoad<Car>{
 
     /**
      * checks if a car can be loaded onto the truck by checking:
-     * so it is a car
-     * so it is not already loaded on the truck
-     * so the total capacity of the truck has not been exceeded
-     * so the trailer is put down so the car can be loaded
-     * so the car is not a truck (because a truck should not be able to load itself)
+     * that it is a car
+     * that it is not already loaded on the truck
+     * that the total capacity of the truck has not been exceeded
+     * that the trailer is put down so the car can be loaded
+     * that the car is not a truck (because a truck should not be able to load itself)
      */
     public boolean canLoadObject(Car car){
         if(!inRange(car)){
@@ -131,7 +131,7 @@ public class CarTransport extends Truck implements ICanLoad<Car>{
      */
     @Override
     public void move(){
-        move();
+        super.move();
         Point newPos = getPosition();
 
         for (Car loadedCar : loadedCars) {
@@ -144,11 +144,11 @@ public class CarTransport extends Truck implements ICanLoad<Car>{
      */
     @Override
     public void turnLeft() {
-        turnLeft();
+        super.turnLeft();
         int newDir = getDir();
 
-        for(Car car : loadedCars){
-            car.setDir(newDir);
+        for(Car loadedCar : loadedCars){
+            loadedCar.setDir(newDir);
         }
     }
 
@@ -157,11 +157,11 @@ public class CarTransport extends Truck implements ICanLoad<Car>{
      */
     @Override
     public void turnRight() {
-        turnRight();
+        super.turnRight();
         int newDir = getDir();
 
-        for(Car car : loadedCars){
-            car.setDir(newDir);
+        for(Car loadedCar : loadedCars){
+            loadedCar.setDir(newDir);
         }
     }
 

@@ -13,7 +13,7 @@ import javax.swing.*;
 
 // This panel represent the animated part of the view with the car images.
 
-public class DrawPanel extends JPanel implements ModelObserver{
+public class DrawPanel extends JPanel{
 
     CarListHolder carListHolder;
     HashMap<Car,BufferedImage> carImageMap = new HashMap<>();
@@ -23,7 +23,7 @@ public class DrawPanel extends JPanel implements ModelObserver{
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));
         this.setBackground(Color.green);
-        this.carListHolder = cl;
+        carListHolder = cl;
 
         updateCarImageMap();
     }
@@ -62,10 +62,5 @@ public class DrawPanel extends JPanel implements ModelObserver{
         for(Car car : carListHolder.getCarList()){
             g.drawImage(carImageMap.get(car), (int)car.getPosition().getX(), (int)car.getPosition().getY(), null);
         }
-    }
-
-    @Override
-    public void update() {
-        repaint();
     }
 }

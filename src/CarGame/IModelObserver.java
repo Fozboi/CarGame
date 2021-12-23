@@ -1,5 +1,5 @@
 package src.CarGame;
 
-public interface ModelObserver {
+public interface IModelObserver {
     void update();
 }

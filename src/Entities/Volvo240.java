@@ -1,7 +1,5 @@
 package src.Entities;
 
-import src.Entities.Car;
-
 import java.awt.*;
 /**
  * the Class Volvo240 is a sub class to Car and contains values and methods for a specific type of car.

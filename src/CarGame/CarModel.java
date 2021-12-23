@@ -12,8 +12,7 @@ import java.util.Random;
 public class CarModel{
     // The delay (ms) corresponds to 20 updates a sec (hz)
     private final int delay = 50;
-    // The timer is started with an listener (see below) that executes the statements
-    // each step between delays.
+    // The timer is started with a listener (see below) that executes the statements
     public Timer timer = new Timer(delay, new TimerListener());
 
     public final int carSpacing = 100;
@@ -24,14 +23,12 @@ public class CarModel{
     ArrayList<Car> cars = new ArrayList<>();
     ArrayList<IHasTurbo> turboCars = new ArrayList<>();
     ArrayList<IHasTrailer> trailerCars = new ArrayList<>();
+    ArrayList<IModelObserver> modelObservers = new ArrayList<>();
 
     CarListHolder carListHolder;
-    private ArrayList<ModelObserver> modelObservers = new ArrayList<>();
 
-
-    public CarModel(){
-        carListHolder = new CarListHolder();
-
+    public CarModel(CarListHolder cl){
+        carListHolder = cl;
         timer.start();
     }
 
@@ -48,17 +45,17 @@ public class CarModel{
                 car.move();
             }
 
-            for (ModelObserver obs : modelObservers){
+            for (IModelObserver obs : modelObservers){
                 obs.update();
             }
         }
     }
 
-    public void addModelObserver(ModelObserver mo){
+    public void addModelObserver(IModelObserver mo){
         modelObservers.add(mo);
     }
 
-    public void removeModelObserver(ModelObserver mo){
+    public void removeModelObserver(IModelObserver mo){
         modelObservers.remove(mo);
     }
 
